@@ -1,0 +1,302 @@
+@charset "utf-8";
+/* CSS Document */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,900');
+body{
+	margin: 0;/* Elimina el margen por defecto que tiene body */
+	font-family: Roboto, Arial, sans-serif;/* tipo de letra */
+	font-size: 14px;/* Tamaño de fuente */
+	color: #333333;/* Color de texto */
+	padding-top: 33px;
+}
+img{
+	display: block;/* Para eliminar el espacio en blanco debajo de toda imagen */
+}
+figure{
+	margin:0;/* Para eliminar el margen por defecto de los objetos figure */
+}
+p{/* Párrafo */
+	line-height: 20px;/* Interlineado */
+	margin-top: 0;
+	margin-bottom: 24px;
+}
+h1,h2,h3,h4,h5,h6{
+	font-weight: normal;/* Asi se indica que no sea negrita o bold, estilo de los encabezados */
+}
+h1{
+	font-weight: 900;
+	font-size: 48px;
+	margin: 0;
+	letter-spacing: -3px;
+	margin-top: 5px;
+	color: #ffffff;
+}
+h2{
+	font-weight: 100;
+	font-size:48px;
+	text-align: center;
+	text-transform: lowercase;/* minúscula */
+	letter-spacing: -3px;
+}
+h3{
+	font-weight: 900;
+	font-size: 24px;
+	text-transform: uppercase;
+	letter-spacing: -2px;
+}
+h4{
+	font-weight: 900;
+	font-size: 18px;
+}
+
+a{/* Hipervinculo */
+	color: #FF0105;
+	text-decoration: none;/* anula el subrayado por defecto */
+}
+a:hover{/* hover es el estado al pasar el puntero del mouse */
+	color: #2AA237;
+}
+
+
+#main-header{
+	/* Asi se define una regla para un objeto por su id (Empieza con #) */
+	background-color: rgba(0,0,0,0.7);/* Color de fondo */ 
+	/*padding: 15px;*//* distancia entre el borde y el contenido */
+	position: fixed;
+	width: 100%;
+	top:33px;
+}
+#main-header .fila{
+	justify-content: space-between;
+}
+#mensaje{
+	
+}
+#noticias{
+	text-align: center;
+	background-color: #eeeeee;
+}
+.contenedor{
+	/* Asi se define una regla para un objeto por su clase (Empieza con .) */
+	max-width: 1140px;/* Asi se indica un ancho máximo */
+	margin-left: auto;
+	margin-right: auto;	/* Al ser el margen izquierdo y derecho automáticos estos serán iguales por tanto el objeto se verá centrado */
+}
+.fila{
+	display: flex;/* Por defecto acomoda los objetos que contiene en columnas */
+}
+.col{
+	padding: 15px;
+	box-sizing: border-box;/* Para que el padding no incremente el ancho */
+}
+.col50{
+	width: 50%;/* Ancho porcentual con respecto al objeto que lo contiene */
+	padding: 15px;
+	box-sizing: border-box;
+}
+.col25{
+	width: 25%;
+	padding: 15px;
+	box-sizing: border-box;
+}
+.padded{
+	padding-top: 90px;
+	padding-bottom: 90px;
+}
+.img-responsive{
+	width: 100%;
+}
+#empresa{
+	background-color: #555555;
+	color: #FFFFFF;
+}
+#empresa a{
+	color: #E1A378;
+}
+#empresa a:hover{
+	color: #F4F346;
+	text-decoration: underline;
+}
+
+#anuncio{
+	background-image: url(img/concierto.jpg);
+	/* Asi se asigna una imagen de fondo */
+	background-size: cover;/* Para que la imagen de fondo se adapte a su contenedor */
+	background-position: right center;/* Alineamiento de la imagen de fondo horizontal y vertical */
+	background-attachment: fixed;/* Para que la imagen quede fija con respecto al navegador */
+}
+#anuncio h2{/* El espacio indica que la regla es para todos los h2 que están dentro de anuncio */
+	font-weight: 900;/* Grosor de la letra */
+	color: #ffffff;
+	text-transform: uppercase;/* Para que el texto esté en mayúscula */
+	letter-spacing: -3px;/* Espacio entre letra y letra */
+	text-align: left;
+}
+.texto-importante{
+	color:#BDA336;
+}
+.menu{
+	display: flex;
+	list-style: none;/* Elimina las viñetas */
+	margin: 0;
+	padding: 0;
+}
+.menu li a{
+	padding: 20px 10px;/* Arriba y abajo , el segundo valor izq. y der. */
+	display: block;/* De esa manera el padding no sobrepasa al contenedor */
+	border-top: solid 3px transparent;
+}
+.menu li a:hover{
+	border-top: solid 3px #ff0000;
+}
+
+#main-footer{
+	background-color: #000000;
+	color: #cccccc;
+}
+#main-footer .col50 h4{
+	text-align: center;
+}
+#footer-corporativo{
+	background-color: #222222;
+	padding: 15px;
+}
+#top-nav{
+	background-color: #333333;
+	position: fixed;/* Para que su posicion sea fija respecto al navegador */
+	width: 100%;
+	top:0;
+}
+#top-nav .fila{
+	justify-content: space-between;
+}
+
+.menu-simple{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+.menu-simple li a{
+	padding: 8px 15px;
+	display: block;
+	color: #cccccc;
+}
+.menu-simple li a:hover{
+	color: #ffffff;
+}
+#eventos h3 i{
+	margin-right: 10px;
+	color: #CC3335;
+}
+#noticias i{
+	font-size: 36px;
+	border:solid 1px #A27475;
+	padding: 25px;
+	border-radius: 10px;/* 50% ovalo */
+}
+.col33{
+	width: 33.3333%
+}
+.col66{
+	width: 66.6666%
+}
+.tablita{
+	width: 100%;
+	background-color: #CFA837;
+	border-collapse: collapse;
+}
+.tablita th{
+	background-color: #333333;
+	color: #ffffff;
+	text-align: left;
+	border: solid #333333 1px;
+}
+.tablita th,.tablita td{
+	padding: 10px;
+}
+.tablita td{
+	border: solid #bbbbbb 1px;
+}
+.tablita tr th:last-child,
+.tablita tr td:last-child{
+	text-align: right;
+	width:70px;	
+}
+.tablita tr th:first-child,
+.tablita tr td:first-child{
+	text-align: center;
+	width:50px;	
+}
+.tablita tr th:nth-child(3),
+.tablita tr td:nth-child(3){
+	text-align: center;
+	width:100px;	
+}
+.tablita tbody tr:nth-child(even){/* even par y odd impar */
+	background-color: rgba(0,0,0,0.05);
+} 
+.tablita tbody tr:hover{
+	background-color: rgba(0,0,0,0.3);
+	color: #ffffff;
+}
+.col16_66{
+	width: 16.66%
+}
+#galeria .fila{
+	flex-wrap: wrap;
+	
+}
+#galeria figure{
+	overflow: hidden;
+}
+#galeria figure img{
+	transition: .5s all ease-in-out;
+}
+#galeria figure img:hover{
+	transform: scale(1.3,1.3) rotate(-15deg);
+}
+
+#irarriba{
+	background-color: #FF0000;
+	color: #ffffff;
+	padding: 20px;
+	font-size: 20px;
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	opacity: 0.7;
+	transition: .5s ease-in-out all;
+}
+#irarriba:hover{
+	opacity: 1;
+	border-radius: 50%;
+}
+.nopadding{
+	padding: 0;
+}
+.imagen-dato{
+	position: relative;
+}
+.imagen-dato figcaption{
+	background-color: rgba(0,0,0,0.7);
+	color: #ffffff;
+	position: absolute;
+	width: calc(100% - 60px);
+	height: calc(100% - 60px);
+	top:30px;
+	left:30px;
+	text-align: center;
+	padding: 40px;
+	box-sizing: border-box;/* Para que el padding no incremente el ancho */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	opacity: 0;
+	transition: .5s ease-in-out all;
+}
+.imagen-dato figcaption:hover{
+	opacity: 1;
+}
+
+
+
