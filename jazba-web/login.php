@@ -6,20 +6,20 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
+      $myusername = mysqli_real_escape_string($db,$_POST['email']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
       
-      $sql = "SELECT username FROM tbl_user WHERE username = '$myusername' and password = '$mypassword'";
+      $sql = "SELECT username FROM tbl_user WHERE email = '$myusername' and password = '$mypassword'";
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
+      $active = $row['username'];
       
       $count = mysqli_num_rows($result);
       
-      // If result matched $myusername and $mypassword, table row must be 1 row
+      // Si el resultado coincide con $ myusername y $ mypassword, la fila de la tabla debe ser 1 fila
         
       if($count == 1) {
-         session_register("myusername");
+         //session_register($myusername);
          $_SESSION['login_user'] = $myusername;
          
          header("location: perfil-usuario.html");
@@ -107,9 +107,9 @@
                     <h1 class="h3 mb-3 font-weight-normal">INICIA SESIÓN CON JAZBA</h1>
                     <p>Y ALCANZA TUS SUEÑOS PROFESIONALES  </p>
                 </div>
-                <form  onSubmit="return getUsuarioByCorreo()" method="post">
+                <form  onSubmit="" method="post">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="username" placeholder="User" id="txtCorreo" >
+                        <input class="form-control" type="text" name="email" placeholder="Email" id="txtCorreo" >
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="password" name="password" placeholder="Password" id="txtPassword" value="submit">
@@ -130,7 +130,6 @@
         </div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/login.js?x=10"></script>
 
         </body>
     </div>
