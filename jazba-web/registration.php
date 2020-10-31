@@ -12,7 +12,7 @@
       $myphone = mysqli_real_escape_string($db,$_POST['phone']);
       $myfile = null;  
       $isEnabled = true;
-      $idInstitucion =1; 
+      $idInstitucion =; 
       $idRole = 1; 
       $idEspecialidad = 1; 
       $lastnameFather = mysqli_real_escape_string($db,$_POST['lastname-father']); 
