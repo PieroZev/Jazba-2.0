@@ -109,10 +109,10 @@
                 </div>
                 <form  onSubmit="" method="post">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="email" placeholder="Email" id="txtCorreo" >
+                        <input class="form-control" type="text" name="email" placeholder="Email" id="txtCorreo" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" >
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="password" name="password" placeholder="Password" id="txtPassword" value="submit">
+                        <input class="form-control" type="password" name="password" placeholder="Password" id="txtPassword">
                     </div>
 
                 <div class="checkbox mb-3">
