@@ -20,9 +20,9 @@
         
       if($count == 1) {
          //session_register($myusername);
-         $_SESSION['login_user'] = $myusername;
+         $_SESSION['login_user'] = $active;
          
-         header("location: perfil-usuario.html");
+         header("location: profile.php");
       }else {
          $error = "Tu usuario y contraseña son incorrectos";
       }
