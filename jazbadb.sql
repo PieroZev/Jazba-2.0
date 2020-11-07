@@ -160,6 +160,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `email` varchar(255) NOT NULL,
   `phone` int(50) NOT NULL,
   `file` longblob NOT NULL,
+  `token` varchar(255) NULL,
   `is_enabled` varchar(50) NOT NULL,
   `id_institucion` int(11) NOT NULL,
   `id_role` int(11) NOT NULL,
@@ -183,6 +184,7 @@ INSERT INTO `tbl_user` (`DNI`, `password`, `username`, `email`, `phone`, `file`,
 (55555555, '123456', 'Jean', 'jean@gmail.com', 999999992, '', '1', 1, 1, 1, 'De la Gala', 'Gutierrez'),
 (77777777, '123456', 'piero', 'piero@gmail.com', 999999999, '', '1', 1, 1, 1, 'Alvarez', 'Salas'),
 (88888888, '123456', 'dayvid', 'dayvid@gmail.com', 999999991, '', '1', 1, 1, 1, 'Sanchez', 'Navarro');
+(72658562, '123456', 'Brayan', 'brayansanchezheavens@gmail.com', 999999991, '', '1', 1, 1, 1, 'Sanchez', 'Navarro');
 
 -- --------------------------------------------------------
 
