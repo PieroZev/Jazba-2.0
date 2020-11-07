@@ -141,5 +141,97 @@
 		  font-size: 12px;
 	  }
   }
-  
+  .input-icono {
+	background-image: url('success.png');
+	background-repeat: no-repeat;
+	background-position: 4px center;
+	background-size: 20px;
+	display: flex;
+	align-items: center;
+	width: 300px;
+	padding-left: 28px;
+	border: 1px solid rgba(9, 113, 163, 1);
+	border-radius: 3px;
+  }
+  .custom-control {
+	position: sticky;
+}
+.comp-central{
+	background: white;
+	margin-top: 100px;
+	padding: 50px 20px;
+	border-radius: 6px;
+}
+.camp{
+	margin-top: 20px;
+	width: 920px;
+	border: 1px solid #D0D2D3;
+	font-size: 30px;
+	color: #333E48;
+	border-radius: 4px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	box-shadow: none;
+	background-color: #fff;
+	padding: 8px 12px;
+	line-height: 1.4;
+}
+.wds-button{
+	margin-top: 15px;
+	background: #EF5351;
+	border-radius: 4px;
+	position: relative;
+	font-weight: 500;
+	font-family: National2,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	transition: color 0.4s, border-color 0.4s, background-color 0.4s;
+	color: #fff;
+}
+.btn-outline{
+color: #0780fe;
+border-color: #0780fe;
+}
+.wds-type--page-title {
+font-size: 34px;
+font-weight: 300;
+line-height: 1.35;
+}
+h5{
+	font-weight: 300;  
+	line-height: 1.35;
+}
+.debag{
+	margin-top: 100px;
+}
+.form-group input{
+	height: 42px;
+	font-size: 18px;
+	border:0;
+	padding-left: 54px;
+	border-radius: 5px;
+	border: 1px solid #D0D2D3
+}
+
+.form-group::before{
+	font-family: "Font Awesome\ 5 Free";
+	position: absolute;
+	left: 58px;
+	font-size: 18px;
+	padding-top: 9px;
+	margin-left: 18%;
+
+}
+
+.form-group#user-group::before{
+	content: "\f0e0";
+}
+.form-group#password-group::before{
+	content: "\f023";
+}
 
