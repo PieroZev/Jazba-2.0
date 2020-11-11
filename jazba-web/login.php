@@ -19,14 +19,14 @@
       
       // Si el resultado coincide con $ myusername y $ mypassword, la fila de la tabla debe ser 1 fila
         
-      if($count == 2) {
+      if($count == 1) {
          //session_register($myusername);
          $_SESSION['login_user'] = $active;
          
-         if($id_rol == 1) {
-            header("location: ruta_profesor.php");
+         if($id_rol == 2) {
+            header("location: perfil_profesor.php");
          }elseif($id_rol == 3) {
-            header("location: ruta_alumno.php");
+            header("location: perfil_alumno.php");
          }else{
              header("location: profile.php");
          }
