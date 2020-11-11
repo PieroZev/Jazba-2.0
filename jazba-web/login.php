@@ -9,20 +9,29 @@
       $myusername = mysqli_real_escape_string($db,$_POST['email']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
       
-      $sql = "SELECT username FROM tbl_user WHERE email = '$myusername' and password = '$mypassword'";
+      $sql = "SELECT username,id_role FROM tbl_user WHERE email = '$myusername' and password = '$mypassword'";
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['username'];
+      $id_rol=$row['rol'];
       
       $count = mysqli_num_rows($result);
       
       // Si el resultado coincide con $ myusername y $ mypassword, la fila de la tabla debe ser 1 fila
         
-      if($count == 1) {
+      if($count == 2) {
          //session_register($myusername);
          $_SESSION['login_user'] = $active;
          
-         header("location: profile.php");
+         if($id_rol == 1) {
+            header("location: ruta_profesor.php");
+         }elseif($id_rol == 3) {
+            header("location: ruta_alumno.php");
+         }else{
+             header("location: profile.php");
+         }
+         
+        
       }else {
          $error = "Tu usuario y contraseña son incorrectos";
       }
