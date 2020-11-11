@@ -146,6 +146,11 @@ CREATE TABLE IF NOT EXISTS `tbl_role` (
 INSERT INTO `tbl_role` (`id_role`, `name`) VALUES
 (1, 'Admin');
 
+ INSERT INTO `tbl_role` (`id_role`, `name`) VALUES
+(2, 'Profesor');
+INSERT INTO `tbl_role` (`id_role`, `name`) VALUES
+(3, 'Alumno');
+
 -- --------------------------------------------------------
 
 --
