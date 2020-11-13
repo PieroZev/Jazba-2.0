@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `jazbadb`
 --
+CREATE DATABASE jazbadb character set utf8;
+
 
 -- --------------------------------------------------------
 
