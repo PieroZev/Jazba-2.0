@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 30-10-2020 a las 00:31:02
--- Versión del servidor: 5.7.23
--- Versión de PHP: 7.2.10
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-11-2020 a las 23:37:02
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `jazbadb`
 --
-CREATE DATABASE jazbadb character set utf8;
-
 
 -- --------------------------------------------------------
 
@@ -30,15 +27,38 @@ CREATE DATABASE jazbadb character set utf8;
 -- Estructura de tabla para la tabla `confirmation_token`
 --
 
-DROP TABLE IF EXISTS `confirmation_token`;
-CREATE TABLE IF NOT EXISTS `confirmation_token` (
+CREATE TABLE `confirmation_token` (
   `tokenid` int(11) NOT NULL,
   `confirmation_token` varchar(50) NOT NULL,
   `created_date` date NOT NULL,
-  `DNI` int(8) NOT NULL,
-  PRIMARY KEY (`tokenid`),
-  KEY `DNI` (`DNI`)
+  `DNI` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_admin`
+--
+
+CREATE TABLE `tbl_admin` (
+  `id_admin` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `id_role` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tbl_admin`
+--
+
+INSERT INTO `tbl_admin` (`id_admin`, `name`, `username`, `password`, `id_role`) VALUES
+(1, 'Saul', 'Saul', '123abc', 1),
+(2, 'Dayvid', 'Dayvid', '123abc', 1),
+(3, 'Piero Zevallos', 'Pieroz', '123abc', 1),
+(7, 'Piero De La Gala', 'Pierodlg', '123abc', 1),
+(8, 'Carlos', 'Carlos', '123abc', 1),
+(9, 'Milton', 'Milton', '123abc', 1);
 
 -- --------------------------------------------------------
 
@@ -46,19 +66,21 @@ CREATE TABLE IF NOT EXISTS `confirmation_token` (
 -- Estructura de tabla para la tabla `tbl_especialidad`
 --
 
-DROP TABLE IF EXISTS `tbl_especialidad`;
-CREATE TABLE IF NOT EXISTS `tbl_especialidad` (
-  `id_especialidad` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_especialidad` (
+  `id_especialidad` int(11) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_especialidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `Dateadd` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `username` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_especialidad`
 --
 
-INSERT INTO `tbl_especialidad` (`id_especialidad`, `Descripcion`) VALUES
-(1, 'Software');
+INSERT INTO `tbl_especialidad` (`id_especialidad`, `Descripcion`, `Dateadd`, `username`) VALUES
+(1, 'Ingeniería de Software', '2020-11-13 00:45:25', ''),
+(2, 'Ingeniería de Sistemas', '2020-11-13 06:33:57', ''),
+(3, 'Diseñador tecnológico', '2020-11-13 06:34:20', '');
 
 -- --------------------------------------------------------
 
@@ -66,19 +88,23 @@ INSERT INTO `tbl_especialidad` (`id_especialidad`, `Descripcion`) VALUES
 -- Estructura de tabla para la tabla `tbl_institucion`
 --
 
-DROP TABLE IF EXISTS `tbl_institucion`;
-CREATE TABLE IF NOT EXISTS `tbl_institucion` (
-  `id_institucion` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_institucion` (
+  `id_institucion` int(11) NOT NULL,
   `Nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_institucion`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `Dateadd` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_institucion`
 --
 
-INSERT INTO `tbl_institucion` (`id_institucion`, `Nombre`) VALUES
-(1, 'Isil');
+INSERT INTO `tbl_institucion` (`id_institucion`, `Nombre`, `Dateadd`) VALUES
+(1, 'ISIL', '2020-11-13 17:19:59'),
+(2, 'USMP', '2020-11-13 06:34:52'),
+(3, 'USIL', '2020-11-13 06:35:01'),
+(4, 'CIBERTEC', '2020-11-13 06:35:10'),
+(5, 'UTP', '2020-11-13 06:35:16'),
+(6, 'PUCP', '2020-11-13 06:35:31');
 
 -- --------------------------------------------------------
 
@@ -86,16 +112,13 @@ INSERT INTO `tbl_institucion` (`id_institucion`, `Nombre`) VALUES
 -- Estructura de tabla para la tabla `tbl_repoproyectos`
 --
 
-DROP TABLE IF EXISTS `tbl_repoproyectos`;
-CREATE TABLE IF NOT EXISTS `tbl_repoproyectos` (
-  `id_repositorio` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_repoproyectos` (
+  `id_repositorio` int(11) NOT NULL,
   `DNI` int(8) NOT NULL,
   `filename` varchar(255) NOT NULL,
   `upload_repo` longblob NOT NULL,
-  `Descripcion` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_repositorio`),
-  KEY `DNI` (`DNI`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `Descripcion` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_repoproyectos`
@@ -115,15 +138,12 @@ INSERT INTO `tbl_repoproyectos` (`id_repositorio`, `DNI`, `filename`, `upload_re
 -- Estructura de tabla para la tabla `tbl_repoproyectosdetalles`
 --
 
-DROP TABLE IF EXISTS `tbl_repoproyectosdetalles`;
-CREATE TABLE IF NOT EXISTS `tbl_repoproyectosdetalles` (
-  `id_detalles` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_repoproyectosdetalles` (
+  `id_detalles` int(11) NOT NULL,
   `id_repositorio` int(11) NOT NULL,
   `comentario` varchar(255) NOT NULL,
   `fechahora_comentario` datetime NOT NULL,
-  `num_likes` int(11) NOT NULL,
-  PRIMARY KEY (`id_detalles`),
-  KEY `id_repositorio` (`id_repositorio`)
+  `num_likes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -132,23 +152,18 @@ CREATE TABLE IF NOT EXISTS `tbl_repoproyectosdetalles` (
 -- Estructura de tabla para la tabla `tbl_role`
 --
 
-DROP TABLE IF EXISTS `tbl_role`;
-CREATE TABLE IF NOT EXISTS `tbl_role` (
-  `id_role` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_role`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `tbl_role` (
+  `id_role` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_role`
 --
 
 INSERT INTO `tbl_role` (`id_role`, `name`) VALUES
-(1, 'Admin');
-
- INSERT INTO `tbl_role` (`id_role`, `name`) VALUES
-(2, 'Profesor');
-INSERT INTO `tbl_role` (`id_role`, `name`) VALUES
+(1, 'Administrador'),
+(2, 'Profesor'),
 (3, 'Alumno');
 
 -- --------------------------------------------------------
@@ -157,39 +172,36 @@ INSERT INTO `tbl_role` (`id_role`, `name`) VALUES
 -- Estructura de tabla para la tabla `tbl_user`
 --
 
-DROP TABLE IF EXISTS `tbl_user`;
-CREATE TABLE IF NOT EXISTS `tbl_user` (
+CREATE TABLE `tbl_user` (
   `DNI` int(8) NOT NULL,
   `password` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` int(50) NOT NULL,
   `file` longblob NOT NULL,
-  `token` varchar(255) NULL,
-  `is_enabled` varchar(50) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `is_enabled` int(11) NOT NULL,
   `id_institucion` int(11) NOT NULL,
   `id_role` int(11) NOT NULL,
   `id_especialidad` int(11) NOT NULL,
   `last_name_father` varchar(255) NOT NULL,
   `last_name_mother` varchar(255) NOT NULL,
-  PRIMARY KEY (`DNI`),
-  KEY `id_institucion` (`id_institucion`),
-  KEY `id_especialidad` (`id_especialidad`),
-  KEY `id_role` (`id_role`)
+  `dateadd` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_admin` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`DNI`, `password`, `username`, `email`, `phone`, `file`, `is_enabled`, `id_institucion`, `id_role`, `id_especialidad`, `last_name_father`, `last_name_mother`) VALUES
-(22222222, '123456', 'Saul', 'saul@gmail.com', 999999995, '', '1', 1, 1, 1, 'Asparrin', 'Juarez'),
-(33333333, '123456', 'Carlos', 'carlos@gmail.com', 999999994, '', '1', 1, 1, 1, 'Villalba', 'Castillo'),
-(44444444, '123456', 'Milton', 'milton@gmail.com', 999999993, '', '1', 1, 1, 1, 'Hernandez', 'Rivera'),
-(55555555, '123456', 'Jean', 'jean@gmail.com', 999999992, '', '1', 1, 1, 1, 'De la Gala', 'Gutierrez'),
-(77777777, '123456', 'piero', 'piero@gmail.com', 999999999, '', '1', 1, 1, 1, 'Alvarez', 'Salas'),
-(88888888, '123456', 'dayvid', 'dayvid@gmail.com', 999999991, '', '1', 1, 1, 1, 'Sanchez', 'Navarro');
-(72658562, '123456', 'Brayan', 'brayansanchezheavens@gmail.com', 999999991, '', '1', 1, 1, 1, 'Sanchez', 'Navarro');
+INSERT INTO `tbl_user` (`DNI`, `password`, `username`, `email`, `phone`, `file`, `token`, `is_enabled`, `id_institucion`, `id_role`, `id_especialidad`, `last_name_father`, `last_name_mother`, `dateadd`, `id_admin`) VALUES
+(22222222, '123456', 'Saul', 'saul@gmail.com', 980776423, '', NULL, 1, 1, 3, 1, 'Michue', 'Asparrín', '2020-11-13 22:29:10', NULL),
+(33333333, '123456', 'Carlos', 'carlos@gmail.com', 999999994, '', NULL, 1, 1, 3, 1, 'Villalba', 'Castillo', '2020-11-13 22:29:08', NULL),
+(44444444, '123456', 'Milton', 'milton@gmail.com', 999999993, '', NULL, 1, 1, 3, 1, 'Hernandez', 'Rivera', '2020-11-13 22:29:12', NULL),
+(55555555, '123456', 'Jean', 'jean@gmail.com', 999999992, '', NULL, 1, 1, 3, 1, 'De la Gala', 'Gutierrez', '2020-11-13 22:29:14', NULL),
+(72658562, '123456', 'Brayan', 'brayansanchezheavens@gmail.com', 999999991, '', NULL, 1, 1, 3, 1, 'Sanchez', 'Navarro', '2020-11-13 22:29:16', NULL),
+(77777777, '123456', 'piero', 'piero@gmail.com', 999999999, '', NULL, 1, 1, 3, 1, 'Alvarez', 'Salas', '2020-11-13 22:29:20', NULL),
+(88888888, '123456', 'dayvid', 'dayvid@gmail.com', 999999991, '', NULL, 1, 1, 3, 1, 'Sanchez', 'Navarro', '2020-11-13 22:29:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -197,13 +209,117 @@ INSERT INTO `tbl_user` (`DNI`, `password`, `username`, `email`, `phone`, `file`,
 -- Estructura de tabla para la tabla `tbl_user_roles`
 --
 
-DROP TABLE IF EXISTS `tbl_user_roles`;
-CREATE TABLE IF NOT EXISTS `tbl_user_roles` (
+CREATE TABLE `tbl_user_roles` (
   `users_dni` int(8) NOT NULL,
-  `roles_id` int(11) NOT NULL,
-  KEY `users_dni` (`users_dni`),
-  KEY `roles_id` (`roles_id`)
+  `roles_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `confirmation_token`
+--
+ALTER TABLE `confirmation_token`
+  ADD PRIMARY KEY (`tokenid`),
+  ADD KEY `DNI` (`DNI`);
+
+--
+-- Indices de la tabla `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  ADD PRIMARY KEY (`id_admin`),
+  ADD KEY `id_role` (`id_role`);
+
+--
+-- Indices de la tabla `tbl_especialidad`
+--
+ALTER TABLE `tbl_especialidad`
+  ADD PRIMARY KEY (`id_especialidad`);
+
+--
+-- Indices de la tabla `tbl_institucion`
+--
+ALTER TABLE `tbl_institucion`
+  ADD PRIMARY KEY (`id_institucion`);
+
+--
+-- Indices de la tabla `tbl_repoproyectos`
+--
+ALTER TABLE `tbl_repoproyectos`
+  ADD PRIMARY KEY (`id_repositorio`),
+  ADD KEY `DNI` (`DNI`);
+
+--
+-- Indices de la tabla `tbl_repoproyectosdetalles`
+--
+ALTER TABLE `tbl_repoproyectosdetalles`
+  ADD PRIMARY KEY (`id_detalles`),
+  ADD KEY `id_repositorio` (`id_repositorio`);
+
+--
+-- Indices de la tabla `tbl_role`
+--
+ALTER TABLE `tbl_role`
+  ADD PRIMARY KEY (`id_role`) USING BTREE;
+
+--
+-- Indices de la tabla `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`DNI`),
+  ADD KEY `id_institucion` (`id_institucion`),
+  ADD KEY `id_especialidad` (`id_especialidad`),
+  ADD KEY `id_role` (`id_role`),
+  ADD KEY `id_admin` (`id_admin`);
+
+--
+-- Indices de la tabla `tbl_user_roles`
+--
+ALTER TABLE `tbl_user_roles`
+  ADD KEY `users_dni` (`users_dni`),
+  ADD KEY `roles_id` (`roles_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_especialidad`
+--
+ALTER TABLE `tbl_especialidad`
+  MODIFY `id_especialidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_institucion`
+--
+ALTER TABLE `tbl_institucion`
+  MODIFY `id_institucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_repoproyectos`
+--
+ALTER TABLE `tbl_repoproyectos`
+  MODIFY `id_repositorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_repoproyectosdetalles`
+--
+ALTER TABLE `tbl_repoproyectosdetalles`
+  MODIFY `id_detalles` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_role`
+--
+ALTER TABLE `tbl_role`
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -214,6 +330,12 @@ CREATE TABLE IF NOT EXISTS `tbl_user_roles` (
 --
 ALTER TABLE `confirmation_token`
   ADD CONSTRAINT `confirmation_token_ibfk_1` FOREIGN KEY (`DNI`) REFERENCES `tbl_user` (`DNI`);
+
+--
+-- Filtros para la tabla `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  ADD CONSTRAINT `tbl_admin_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `tbl_role` (`id_role`);
 
 --
 -- Filtros para la tabla `tbl_repoproyectos`
@@ -231,9 +353,10 @@ ALTER TABLE `tbl_repoproyectosdetalles`
 -- Filtros para la tabla `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  ADD CONSTRAINT `tbl_user_ibfk_1` FOREIGN KEY (`id_institucion`) REFERENCES `tbl_institucion` (`id_institucion`),
-  ADD CONSTRAINT `tbl_user_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `tbl_role` (`id_role`),
-  ADD CONSTRAINT `tbl_user_ibfk_3` FOREIGN KEY (`id_especialidad`) REFERENCES `tbl_especialidad` (`id_especialidad`);
+  ADD CONSTRAINT `tbl_user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `tbl_role` (`id_role`),
+  ADD CONSTRAINT `tbl_user_ibfk_2` FOREIGN KEY (`id_especialidad`) REFERENCES `tbl_especialidad` (`id_especialidad`),
+  ADD CONSTRAINT `tbl_user_ibfk_3` FOREIGN KEY (`id_institucion`) REFERENCES `tbl_institucion` (`id_institucion`),
+  ADD CONSTRAINT `tbl_user_ibfk_4` FOREIGN KEY (`id_admin`) REFERENCES `tbl_admin` (`id_admin`);
 
 --
 -- Filtros para la tabla `tbl_user_roles`
