@@ -131,7 +131,7 @@
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">INICIAR SESIÓN</button>
                 <div align="center">
-                    <p>  <a href="https://caniuse.com/#feat=css-placeholder-shown"> ¿Olvidaste la contraseña?</a></p>
+                    <p>  <a href="olvidecontraseña.php"> ¿Olvidaste la contraseña?</a></p>
                     ¿Aún no eres parte de la comunidad JAZBA? <a href="registration.php"> ¡Registrate aquí!</a>
                 </div>
                 </form>
