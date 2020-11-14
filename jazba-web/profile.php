@@ -8,36 +8,77 @@
    if( $usuario != null) {
       // ejecuta la consulta al usuario
       
-      $sql = "SELECT * from tbl_user where username = '$usuario';";
+      $sql = "SELECT * from tbl_user U 
+      inner join tbl_role R on U.id_role = R.id_role 
+      inner join tbl_institucion I on U.id_institucion = I.id_institucion 
+      inner join tbl_especialidad E on U.id_especialidad = E.id_especialidad 
+      where U.username = '$usuario';";
 
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      
-      $mydni = $row['DNI'];
-      $mypassword = $row['password']; 
-      $myusername = $row['username'];
-      $myemail = $row['email'];
-      $myphone = $row['phone'];
-      $myfile = $row['file'];  
-      $isEnabled = $row['is_enabled'];
-      $idInstitucion = $row['id_institucion']; 
-      $idRole = $row['id_role']; 
-      $idEspecialidad = $row['id_especialidad']; 
-      $lastnameFather = $row['last_name_father']; 
-      $lastnameMother = $row['last_name_mother']; 
-      
-      $count = mysqli_num_rows($result);
-      
-      // Si el resultado coincide con $ myusername y $ mypassword, la fila de la tabla debe ser 1 fila
-        
-      if($count == 1) {
-         //session_register($myusername);
-         $_SESSION['login_user'] = $myusername;
-         
-         //header("location: profile.php");
-      }else {
-         $error = "Tu usuario y contraseña son incorrectos";
+      $sql .= "SELECT * from tbl_repoproyectos RP 
+      inner join tbl_user US on US.DNI = RP.DNI 
+      where US.username = '$usuario' ;";
+
+      $nextResult = false;
+      $nroQuery = 1;
+
+      if ($db -> multi_query($sql)) {
+        do {
+          // Store first result set
+          
+            $result = mysqli_store_result($db);
+            while ($row = $result -> fetch_array(MYSQLI_ASSOC)) {
+              
+              if($nroQuery==1){
+              $mydni =          $row['DNI'];
+              $mypassword =     $row['password']; 
+              $myusername =     $row['username'];
+              $myemail =        $row['email'];
+              $myphone =        $row['phone'];
+              $myfile =         $row['file'];  
+              $isEnabled =      $row['is_enabled'];
+              $idInstitucion =  $row['Nombre']; 
+              $idRole =         $row['name']; 
+              $idEspecialidad = $row['Descripcion']; 
+              $lastnameFather = $row['last_name_father']; 
+              $lastnameMother = $row['last_name_mother']; 
+              }
+              
+              if($nroQuery>1){
+
+              $postname = $row['filename'];
+              $postdescription = $row['Descripcion'];
+              $postimage= $row['upload_repo'];
+                
+                /* $count = mysqli_num_rows($result);
+
+                for($i=1;$i<$count;$i++){
+                
+                $postTitles       =     $row[0];
+                $postDescriptions =     $row[1]; 
+                $postImages       =     $row[2]; 
+              }*/
+            }
+
+          }
+          
+          $result -> free_result();
+
+          // if there are more result-sets, the print a divider
+          if ($db -> more_results()) {
+              $db -> next_result();
+              $nextResult = true;
+          }
+          else{
+            $nextResult = false;
+          }
+
+          $nroQuery++;
+
+           //Prepare next result set
+        } while ($nextResult);
       }
+      
+      $db -> close();
       
    }
 ?>
@@ -126,7 +167,7 @@
           <div class="mb-1">DNI: <?php echo($mydni) ?></div>
           <div class="mb-1">Email: <?php echo($myemail) ?></div>
           <div class="mb-1">Phone: <?php echo($myphone) ?></div>
-          <div class="mb-1">Rol: <?php if($idRole==1) echo ('admin') ?></div>
+          <div class="mb-1">Rol: <?php echo($idRole) ?></div>
         </div>
      	  
 		  
@@ -152,8 +193,8 @@
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">ESTUDIOS SUPERIORES</strong>
-          <h3 class="mb-0"><?php if ($idEspecialidad==1) echo('Desarrollador de Software') ?></h3>
-          <div class="mb-1"><?php if ($idInstitucion==1) echo('ISIL') ?></div>
+          <h3 class="mb-0"><?php echo($idEspecialidad) ?></h3>
+          <div class="mb-1"><?php echo($idInstitucion) ?></div>
         </div>
         
       </div>
@@ -180,37 +221,43 @@
         MI PORTAFOLIO 
       </h3>
 
-       <div class="card mb-4 shadow-sm">
-		   <div> 
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal" >Proyecto 1 </h4>
-      </div>
-      <div class="card-body">
-       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">World</strong>
-          <h3 class="mb-0">Featured post</h3>
-          <div class="mb-1 text-muted">Nov 12</div>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          
+<?php
 
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-        </div>	  
-		  
-		  
-      </div>
-		   <nav class="blog-pagination" align="right" >
-			   <textarea class="form-control" aria-label="With textarea">Describe tu proyecto ..</textarea><br>
-        <a class="btn btn-outline-primary" href="#">Like :</a>
-      </nav>
-		  
-      </div>
-			   
-		   
-    </div>
-		   </div>
+
+  echo ' <div class="card mb-4 shadow-sm">
+  <div> 
+ <div class="card-header">
+   <h4 class="my-0 font-weight-normal" >'.$postname.'</h4>
+ </div>
+ <div class="card-body">
+  <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+   <div class="col p-4 d-flex flex-column position-static">
+     <div class="mb-1 text-muted">Nov 7</div>
+     <p class="card-text mb-auto">'.$postdescription.'</p>
+     
+
+   </div>
+   <div class="col-auto d-none d-lg-block">
+   <img src="data:image/png;base64,'.base64_encode($postimage).'" width="300px" height="200px"/>
+   </div>	  
+ 
+ 
+ </div>
+  <nav class="blog-pagination" align="right" >
+    <textarea class="form-control" aria-label="With textarea">Describe tu proyecto ..</textarea><br>
+   <a class="btn btn-outline-primary" href="#">Like :</a>
+ </nav>
+ 
+ </div>
+    
+  
+</div>
+  </div> '  ;
+
+
+?>
+
+       
 
       
     </div><!-- /.blog-main -->    <!-- /.blog-sidebar -->
