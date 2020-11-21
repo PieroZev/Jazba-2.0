@@ -34,7 +34,7 @@
               $myusername =     $row['username'];
               $myemail =        $row['email'];
               $myphone =        $row['phone'];
-              $myfile =         $row['file'];  
+              $myphoto =         $row['photo'];  
               $isEnabled =      $row['is_enabled'];
               $idInstitucion =  $row['Nombre']; 
               $idRole =         $row['name']; 
@@ -129,7 +129,7 @@
       </div >
 		<div class="blog-header-logo text-dark"> 
 			
-			<img src="img/36815619-confiado-guapo-retrato-de-hombre-joven-y-guapo-en-ropa-formal-mirando-a-la-cámara-mientras-está-de-pie-c.jpg" alt="" class="img-fluid rounded-circle" height="200px" width="150px">
+			<?php echo '<img src="data:image/png;base64,'.base64_encode($myphoto).'" alt="" class="img-fluid rounded-circle" height="200px" width="100px"> '?>
 		
 		 </div>
       <div class="col-4 d-flex justify-content-end align-items-center">

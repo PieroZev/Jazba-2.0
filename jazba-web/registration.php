@@ -10,15 +10,25 @@
       $myusername = mysqli_real_escape_string($db,$_POST['username']);
       $myemail = mysqli_real_escape_string($db,$_POST['email']);
       $myphone = mysqli_real_escape_string($db,$_POST['phone']);
-      $myfile = null;  
+      //$myphoto = mysqli_real_escape_string($db,$_POST['photo']);;  
       $isEnabled = 1;
       $idInstitucion = mysqli_real_escape_string($db,$_POST['id_institucion']);
       $idRole = mysqli_real_escape_string($db,$_POST['id_role']);
       $idEspecialidad = mysqli_real_escape_string($db,$_POST['id_especialidad']);
       $lastnameFather = mysqli_real_escape_string($db,$_POST['lastname-father']); 
       $lastnameMother = mysqli_real_escape_string($db,$_POST['lastname-mother']);
+	  if(isset($_REQUEST['enviar'])){
+				if(isset($_FILES['photo']['name'])){
+					$tipoArchivo=$_FILES['photo']['type'];
+					$nombreArchivo=$_FILES['photo']['name'];
+					$tamanoArchivo=$_FILES['photo']['size'];
+					$imagenSubida=fopen($_FILES['photo']['tmp_name'], 'r');
+					$binariosImagen = fread($imagenSubida, $tamanoArchivo);
+					$binariosImagen = mysqli_escape_string($db,$binariosImagen);
+				}
+			}
       
-      $sql = "INSERT into tbl_user(DNI,password,username,email,phone,file,is_enabled,id_institucion,id_role,id_especialidad,last_name_father,last_name_mother) values('$mydni','$mypassword','$myusername','$myemail','$myphone','$myfile','$isEnabled','$idInstitucion','$idRole','$idEspecialidad','$lastnameFather','$lastnameMother');";
+      $sql = "INSERT into tbl_user(DNI,password,username,email,phone,photo,is_enabled,id_institucion,id_role,id_especialidad,last_name_father,last_name_mother) values('$mydni','$mypassword','$myusername','$myemail','$myphone','$binariosImagen','$isEnabled','$idInstitucion','$idRole','$idEspecialidad','$lastnameFather','$lastnameMother');";
       
       // Si el resultado coincide con $ myusername y $ mypassword, la fila de la tabla debe ser 1 fila
         
@@ -69,7 +79,19 @@
     </br>
     <div  align="left">
         <h4 class="mb-3"><strong>DATOS PERSONALES</strong></h4>
-        <form  th:action="@{/registration}" method="post">
+        <form  th:action="@{/registration}" method="post" enctype="multipart/form-data">
+		<?php
+			// if(isset($_REQUEST['enviar'])){
+				// if(isset($_FILES['photo']['name'])){
+					// $tipoArchivo=$_FILES['photo']['type'];
+					// $nombreArchivo=$_FILES['photo']['name'];
+					// $tamanoArchivo=$_FILES['photo']['size'];
+					// $imagenSubida=fopen($_FILES['photo']['tmp_name'], 'r');
+					// $binariosImagen = fread($imagenSubida, $tamanoArchivo);
+					// $binariosImagen = mysqli_real_escape_string($db,$_POST['photo']);;
+				// }
+			// }
+		?>
 
             <div class="row">
 				<div class="col-md-6 mb-3">
@@ -157,6 +179,14 @@
                     </div>
                 </div>
             </div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<div class="form-group">
+						<label>FOTO</label>
+						<input type="file" class="form-control-file" name="photo" required >
+					</div>
+				</div>
+			</div>
 
             <div class="custom-control custom-checkbox">
                 <input style="opacity:1;" type="checkbox" class="custom-control-input btn-open-popup" id="save-info">
@@ -187,12 +217,12 @@
                             <p>Usted no puede declarar propiedad intelectual o exclusiva a ninguno de nuestros productos, modificado o sin modificar. Todos los productos son propiedad  de los proveedores del contenido. En caso de que no se especifique lo contrario, nuestros productos se proporcionan  sin ningún tipo de garantía, expresa o implícita. En ningún esta compañía será  responsables de ningún daño incluyendo, pero no limitado a, daños directos, indirectos, especiales, fortuitos o consecuentes u otras pérdidas resultantes del uso o de la imposibilidad de utilizar nuestros productos.</p>
                         </div>
 
-                        <a href="#" class="btn-close-popup">x</a>
+                        <!--<a href="#" class="btn-close-popup">x</a>-->
                     </div>
                 </div>
             </div>
             </br>
-            <button class="btn btn-primary btn-lg btn-block" type="submit" >Enviar solicitud</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" name="enviar" >Enviar solicitud</button>
 
         </form>
         <footer class="my-5 pt-5 text-muted text-center text-small">

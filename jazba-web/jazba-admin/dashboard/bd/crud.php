@@ -8,7 +8,6 @@ $username = (isset($_POST['username'])) ? $_POST['username'] : '';
 $password = (isset($_POST['password'])) ? $_POST['password'] : '';
 $email = (isset($_POST['email'])) ? $_POST['email'] : '';
 $phone = (isset($_POST['phone'])) ? $_POST['phone'] : '';
-$file = (isset($_POST['file'])) ? $_POST['file'] : '';
 $is_enabled = (isset($_POST['is_enabled'])) ? $_POST['is_enabled'] : '';
 $id_institucion = (isset($_POST['id_institucion'])) ? $_POST['id_institucion'] : '';
 $id_role = (isset($_POST['id_role'])) ? $_POST['id_role'] : '';
@@ -20,7 +19,7 @@ $DNI = (isset($_POST['DNI'])) ? $_POST['DNI'] : '';
 
 switch($opcion){
     case 1: //alta
-        $consulta = "INSERT INTO tbl_user (DNI, username, password, email, phone, file, is_enabled, id_institucion, id_role, id_especialidad, last_name_father, last_name_mother) VALUES('$DNI', '$username', '$password', '$email', '$phone', '$file', '$is_enabled', '$id_institucion', '$id_role', '$id_especialidad', '$last_name_father', '$last_name_mother') ";			
+        $consulta = "INSERT INTO tbl_user (DNI, username, password, email, phone, is_enabled, id_institucion, id_role, id_especialidad, last_name_father, last_name_mother) VALUES('$DNI', '$username', '$password', '$email', '$phone', '$is_enabled', '$id_institucion', '$id_role', '$id_especialidad', '$last_name_father', '$last_name_mother') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
 
@@ -30,7 +29,7 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 2: //modificación
-        $consulta = "UPDATE tbl_user SET username='$username', password='$password', email='$email', phone='$phone', file='$file', is_enabled='$is_enabled', id_institucion='$id_institucion', id_role='$id_role', id_especialidad='$id_especialidad', last_name_father='$last_name_father', last_name_mother='$last_name_mother' WHERE DNI='$DNI' ";		
+        $consulta = "UPDATE tbl_user SET username='$username', password='$password', email='$email', phone='$phone', is_enabled='$is_enabled', id_institucion='$id_institucion', id_role='$id_role', id_especialidad='$id_especialidad', last_name_father='$last_name_father', last_name_mother='$last_name_mother' WHERE DNI='$DNI' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         
@@ -45,7 +44,7 @@ switch($opcion){
         $resultado->execute();                           
         break;
 	case 4:
-		$consulta = "SELECT * FROM tbl_user where is_enabled = 1";
+		$consulta = "SELECT DNI, password, username, email, phone, is_enabled, id_institucion, id_role, id_especialidad, last_name_father, last_name_mother FROM tbl_user where is_enabled = 1";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
