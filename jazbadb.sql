@@ -180,7 +180,7 @@ CREATE TABLE `tbl_user` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` int(50) NOT NULL,
-  `file` longblob NOT NULL,
+  `photo` longblob NOT NULL,
   `token` varchar(255) DEFAULT NULL,
   `is_enabled` int(11) NOT NULL,
   `id_institucion` int(11) NOT NULL,
