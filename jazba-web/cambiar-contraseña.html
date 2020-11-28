@@ -23,7 +23,7 @@
 <body class="bg-light" id="degradado">
 
 <div class="text-center container" id="nuevoestilo">
-    <img class="d-block mx-auto mb-4" src="img/jazba-02.png" alt="" width="100" height="110">
+    <img class="d-block mx-auto mb-4" src="img/logojazba-02.png" alt="" width="100" height="110">
     <h1>GENERAR NUEVA CONTRASEÑA</h1>
     <p class="lead"><em> Es la confianza mutua, más que el interés mutuo, la que mantiene unidos los grupos humanos (H. L. Mencken)</em></p>
   <br> 
@@ -33,6 +33,43 @@
 		<br> 
 		<br>
         <form  th:action="" method="post">
+
+          <?php
+            if(isset($_POST['editar'])) {
+                require "conexion.php";
+
+                $email = $mysqli->real_escape_string($_POST['email']);
+                $password = $mysqli->real_escape_string($_POST['password']);
+                $passwordConfirm = $mysqli->real_escape_string($_POST['passwordConfirm']);
+
+                $email = md5($email);
+                $password = md5($password);
+                $passwordConfirm = md5($passwordConfirm);
+
+                $sqlA = $mysqli->query("SELECT * FROM tbl_user WHERE id = '".$_SESSION['id']."'");
+                $rowA = $sqlA->fetch-array();
+
+                if($rowA['email'] == $email){
+
+                    if($password = $passwordConfirm){
+
+                        $update = $mysqli->query("UPDATE tbl_user SET password = $passwordConfirm WHERE id= '".$_SESSION['id']."'");
+                        if(&update) {echo "Se ha actualizado su contraseña";}
+
+                    }
+                    else{
+                        echo "Las contraseñas no coinciden";
+                    }
+                
+                }
+                else{
+                    echo "No se encuentra ningun usuario con ese correo";
+                }
+
+            }
+          ?>
+           
+
               
             <div class="row">
                 <div class="col-md-6 mb-3">

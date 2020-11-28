@@ -9,11 +9,10 @@
       $myusername = mysqli_real_escape_string($db,$_POST['email']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
       
-      $sql = "SELECT username,id_role FROM tbl_user WHERE email = '$myusername' and password = '$mypassword'";
+      $sql = "SELECT username FROM tbl_user WHERE email = '$myusername' and password = '$mypassword'";
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['username'];
-      $id_rol=$row['rol'];
       
       $count = mysqli_num_rows($result);
       
@@ -23,15 +22,7 @@
          //session_register($myusername);
          $_SESSION['login_user'] = $active;
          
-         if($id_rol == 2) {
-            header("location: perfil_profesor.php");
-         }elseif($id_rol == 3) {
-            header("location: perfil_alumno.php");
-         }else{
-             header("location: profile.php");
-         }
-         
-        
+         header("location: profile.php");
       }else {
          $error = "Tu usuario y contraseña son incorrectos";
       }
@@ -131,7 +122,7 @@
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">INICIAR SESIÓN</button>
                 <div align="center">
-                    <p>  <a href="olvidecontraseña.php"> ¿Olvidaste la contraseña?</a></p>
+                    <p>  <a href="https://caniuse.com/#feat=css-placeholder-shown"> ¿Olvidaste la contraseña?</a></p>
                     ¿Aún no eres parte de la comunidad JAZBA? <a href="registration.php"> ¡Registrate aquí!</a>
                 </div>
                 </form>

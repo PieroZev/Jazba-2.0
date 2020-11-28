@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Nuestro css-->
+    <link href="form-validation.css" rel="stylesheet">
+
+    <title>Registation</title>
+
+    <style>
+        .custom-control {
+            position: sticky;
+        }
+    </style>
+
+</head>
+<body class="bg-light" id="degradado">
+
+<div class="text-center container" id="nuevoestilo">
+    <img class="d-block mx-auto mb-4" src="../fotos/logojazba-02.png" alt="" width="100" height="110">
+    <h1>¿GENERAR NUEVA CONTRASEÑA</h1>
+    <p class="lead"><em> Es la confianza mutua, más que el interés mutuo, la que mantiene unidos los grupos humanos (H. L. Mencken)</em></p>
+  <br> 
+		<br>
+    <div  align="left">
+        <h4 class="mb-3"><strong>DATOS REQUERIDOS</strong></h4>
+		<br> 
+		<br>
+        <form  th:action="@{/registration}" method="post">
+
+          
+           
+
+              
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <label>CORREO</label>
+                        <input class="form-control" type="email" name="email" placeholder="nombre@example.com" >
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <label>NUEVA CONTRASEÑA</label>
+                        <input class="form-control" type="password" name="password" placeholder="password" >
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <label>VOLVER A ESCRIBIR NUEVA CONTRASEÑA</label>
+                        <input class="form-control" type="password" name="passwordConfirm" placeholder="passwordConfirm" >
+                    </div>
+                </div>
+            </div>
+			<br>
+			<br>
+<button class="btn btn-primary btn-lg btn-block" href="login.html" type="submit" >Enviar</button>
+
+        </form>
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy;COPYRIGHT  DERECHOS RESERVADOS</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacy</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+        </footer>
+    </div>
+</div>
+
+</body>
+</html>

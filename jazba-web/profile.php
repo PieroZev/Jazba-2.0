@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <?php
+ 
    include("config.php");
    session_start();
 
-   $usuario = $_SESSION["login_user"];
-   
+    $usuario = $_SESSION["login_user"];
+    $postimages=[];
+    $posttitles=[];
+    $postdescriptions=[];
+    $postowners=[];
+    $postIds=[];
+    
    if( $usuario != null) {
       // ejecuta la consulta al usuario
       
@@ -45,18 +51,18 @@
               
               if($nroQuery>1){
 
-              $postname = $row['filename'];
-              $postdescription = $row['Descripcion'];
-              $postimage= $row['upload_repo'];
-                
-                /* $count = mysqli_num_rows($result);
+                $i = 0;
 
-                for($i=1;$i<$count;$i++){
-                
-                $postTitles       =     $row[0];
-                $postDescriptions =     $row[1]; 
-                $postImages       =     $row[2]; 
-              }*/
+                foreach($result as $row){
+    
+                    $postIds[$i] = $row['id_repositorio'];
+                    $posttitles[$i] = $row['filename'];
+                    $postdescriptions[$i] = $row['Descripcion'];
+                    $postimages[$i]= $row['upload_repo'];
+                    $postowners[$i] = $row['username'].' '.$row['last_name_father'].' '.$row['last_name_mother'];
+    
+                    $i++;
+                }
             }
 
           }
@@ -164,7 +170,7 @@
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">¿QUIÉN SOY?</strong>
           <h3 class="mb-0"><?php echo($myusername.' '.$lastnameFather.' '.$lastnameMother) ?></h3>
-          <div class="mb-1">DNI: <?php echo($mydni) ?></div>
+          <div id="mydni" class="mb-1">DNI: <?php echo($mydni) ?></div>
           <div class="mb-1">Email: <?php echo($myemail) ?></div>
           <div class="mb-1">Phone: <?php echo($myphone) ?></div>
           <div class="mb-1">Rol: <?php echo($idRole) ?></div>
@@ -214,53 +220,44 @@
 	  <div class="container"> </div>
 </div>
 
-<main role="main" class="container">
+<main class="container">
   <div class="row">
-    <div class="col-md-8 blog-main">
+    
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         MI PORTAFOLIO 
       </h3>
-
+    </div>
+    <div class="row">
 <?php
+$i=0;
 
+foreach($postimages as $image){
 
-  echo ' <div class="card mb-4 shadow-sm">
-  <div> 
- <div class="card-header">
-   <h4 class="my-0 font-weight-normal" >'.$postname.'</h4>
- </div>
- <div class="card-body">
-  <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-   <div class="col p-4 d-flex flex-column position-static">
-     <div class="mb-1 text-muted">Nov 7</div>
-     <p class="card-text mb-auto">'.$postdescription.'</p>
-     
-
-   </div>
-   <div class="col-auto d-none d-lg-block">
-   <img src="data:image/png;base64,'.base64_encode($postimage).'" width="300px" height="200px"/>
-   </div>	  
- 
- 
- </div>
-  <nav class="blog-pagination" align="right" >
-    <textarea class="form-control" aria-label="With textarea">Describe tu proyecto ..</textarea><br>
-   <a class="btn btn-outline-primary" href="#">Like :</a>
- </nav>
- 
- </div>
-    
-  
-</div>
-  </div> '  ;
-
-
+  echo ' 
+<div class="card col-md-4">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal" >'.$posttitles[$i].'</h4>
+    </div>
+    <div class="card-body">
+          <div class="mb-1 text-muted">Fecha de Posteo</div>
+            <p class="card-text mb-auto">'.$postdescriptions[$i].'</p>
+          </div>
+    <img src="data:image/png;base64,'.base64_encode($image).'" width="300px" height="200px"/>  
+        </div>
+   '  ;
+  $i++;
+}
 ?>
 
-       
+<div class="col-md-3"></div>
+<div class="blog-pagination col-md-6" style="margin-top:100px;">
+    <input id="post-title" class="form-control" type="text" placeholder="titulo" value=""/>
+    <input id="upload" class="form-control" type="file" accept="image/*" value="Examinar" name="Examinar"/>
+    <textarea id="txt_description" class="form-control" placeholder="leave a comment..." style="height:100px;"></textarea><br>
+   <a class="btn btn-outline-primary" id="newProyect">Crear Proyecto</a>
+</div>   
+<div class="col-md-3"></div>
 
-      
-    </div><!-- /.blog-main -->    <!-- /.blog-sidebar -->
 
   </div><!-- /.row -->
 
@@ -272,6 +269,9 @@
     <a href="#">Back to top</a>
   </p>
 </footer>
-	  </div>
+    </div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/create-proyect.js"></script>
 </body>
 </html>

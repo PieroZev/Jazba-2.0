@@ -64,6 +64,7 @@ a:hover{/* hover es el estado al pasar el puntero del mouse */
 	position: fixed;
 	width: 100%;
 	top:33px;
+	z-index: 2;
 }
 #main-header .fila{
 	justify-content: space-between;
@@ -118,7 +119,7 @@ a:hover{/* hover es el estado al pasar el puntero del mouse */
 }
 
 #anuncio{
-	background-image: url(img/concierto.jpg);
+	background-image: url(../images/concierto.jpg);
 	/* Asi se asigna una imagen de fondo */
 	background-size: cover;/* Para que la imagen de fondo se adapte a su contenedor */
 	background-position: right center;/* Alineamiento de la imagen de fondo horizontal y vertical */
@@ -165,6 +166,7 @@ a:hover{/* hover es el estado al pasar el puntero del mouse */
 	position: fixed;/* Para que su posicion sea fija respecto al navegador */
 	width: 100%;
 	top:0;
+	z-index: 2;
 }
 #top-nav .fila{
 	justify-content: space-between;

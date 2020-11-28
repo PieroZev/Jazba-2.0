@@ -11,14 +11,14 @@
       $myemail = mysqli_real_escape_string($db,$_POST['email']);
       $myphone = mysqli_real_escape_string($db,$_POST['phone']);
       $myfile = null;  
-      $isEnabled = 1;
-      $idInstitucion = mysqli_real_escape_string($db,$_POST['id_institucion']);
-      $idRole = mysqli_real_escape_string($db,$_POST['id_role']);
-      $idEspecialidad = mysqli_real_escape_string($db,$_POST['id_especialidad']);
+      $isEnabled = true;
+      $idInstitucion =1; 
+      $idRole = 1; 
+      $idEspecialidad = 1; 
       $lastnameFather = mysqli_real_escape_string($db,$_POST['lastname-father']); 
-      $lastnameMother = mysqli_real_escape_string($db,$_POST['lastname-mother']);
+      $lastnameMother = mysqli_real_escape_string($db,$_POST['lastname-mother']); 
       
-      $sql = "INSERT into tbl_user(DNI,password,username,email,phone,file,is_enabled,id_institucion,id_role,id_especialidad,last_name_father,last_name_mother) values('$mydni','$mypassword','$myusername','$myemail','$myphone','$myfile','$isEnabled','$idInstitucion','$idRole','$idEspecialidad','$lastnameFather','$lastnameMother');";
+      $sql = "INSERT into tbl_user values('$mydni','$mypassword','$myusername','$myemail','$myphone','$myfile','$isEnabled','$idInstitucion','$idRole','$idEspecialidad','$lastnameFather','$lastnameMother');";
       
       // Si el resultado coincide con $ myusername y $ mypassword, la fila de la tabla debe ser 1 fila
         
@@ -71,14 +71,12 @@
         <h4 class="mb-3"><strong>DATOS PERSONALES</strong></h4>
         <form  th:action="@{/registration}" method="post">
 
-            <div class="row">
-				<div class="col-md-6 mb-3">
-					<div class="form-group">
-						<label>DNI</label>
-						<input class="form-control" type="text" name="dni" maxlength="8" placeholder="DNI" pattern="[0-9]{8}" title="Debe poner 8 números" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required >
-					</div>
-				</div>
-			</div>
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label>DNI</label>
+                    <input class="form-control" type="text" name="dni" maxlength="8" placeholder="DNI" pattern="[0-9]{8}" title="Debe poner 8 números" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required >
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <div class="form-group">
@@ -114,35 +112,6 @@
                     </div>
                 </div>
             </div>
-			<div>
-                <select name="id_especialidad" id="id_especialidad" class="custom-select" required>
-					<option selected>SELECCIONAR -- ESPECIALIDAD </option>
-                    <option value="1">Ingeniería de Sistemas</option>
-                    <option value="2">Ingeniería de Software</option>
-                    <option value="3">Diseñador tecnológico</option>
-                </select>
-            </div>
-            <br>
-            <div>
-                <select name="id_role" id="id_role" class="custom-select" required>
-					<option selected>SELECCIONAR -- TIPO DE USUARIO </option>
-                    <option value="2">Profesor</option>
-					<option value="3">Alumno</option>
-                </select>
-                </div>
-                <br>
-            <div>
-                <select name="id_institucion" id="id_institucion" class="custom-select" required>
-					<option selected>SELECCIONAR -- CASA ESTUDIANTIL SUPERIOR </option>
-                    <option value="1">ISIL</option>
-                    <option value="2">USMP</option>
-                    <option value="3">USIL</option>
-                    <option value="4">CIBERTEC</option>
-                    <option value="5">UTP</option>
-                    <option value="6">PUCP</option>
-                </select>
-            </div>
-			<br>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <div class="form-group">

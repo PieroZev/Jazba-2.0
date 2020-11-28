@@ -15,5 +15,5 @@ if ($mysqli->ping()) {
 }
 
 /* cerrar la conexión */
-return $mysqli;
+$mysqli->close();
 ?>
