@@ -1,4 +1,5 @@
 <?php
+   header('Access-Control-Allow-Origin: *');
    define('DB_SERVER', 'localhost');
    define('DB_USERNAME', 'jazba_user');
    define('DB_PASSWORD', '123456');
