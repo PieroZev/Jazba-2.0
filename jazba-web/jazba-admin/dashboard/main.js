@@ -15,7 +15,6 @@ tablaUsuarios = $('#tablaUsuarios').DataTable({
 		{"data": "password"},
 		{"data": "email"},
 		{"data": "phone"},
-		{"data": "file"},
 		{"data": "is_enabled"},
 		{"data": "id_institucion"},
 		{"data": "id_role"},
@@ -50,8 +49,7 @@ $('#formUsuarios').submit(function(e){
     username = $.trim($("#username").val());
     password = $.trim($("#password").val());
     email = $.trim($("#email").val());    
-    phone = $.trim($("#phone").val());    
-    file = $.trim($("#file").val());    
+    phone = $.trim($("#phone").val());       
     is_enabled = $.trim($("#is_enabled").val());    
     id_institucion = $.trim($("#id_institucion").val());    
     id_role = $.trim($("#id_role").val());    
@@ -62,7 +60,7 @@ $('#formUsuarios').submit(function(e){
           url: "bd/crud.php",
           type: "POST",
           datatype:"json",    
-          data:  {DNI:DNI, username:username, password:password, email:email, phone:phone, file:file, is_enabled:is_enabled, id_institucion:id_institucion, id_role:id_role, id_especialidad:id_especialidad, last_name_father:last_name_father, last_name_mother:last_name_mother, opcion:opcion},    
+          data:  {DNI:DNI, username:username, password:password, email:email, phone:phone, is_enabled:is_enabled, id_institucion:id_institucion, id_role:id_role, id_especialidad:id_especialidad, last_name_father:last_name_father, last_name_mother:last_name_mother, opcion:opcion},    
           success: function(data) {
             tablaUsuarios.ajax.reload(null, false);
            }
@@ -79,7 +77,7 @@ $("#btnNuevo").click(function(){
     $("#formUsuarios").trigger("reset");
     $(".modal-header").css( "background-color", "#17a2b8");
     $(".modal-header").css( "color", "white" );
-    $(".modal-title").text("Nuevo Instituto");
+    $(".modal-title").text("Nuevo Usuario");
     $('#modalCRUD').modal('show');	    
 });
 
@@ -92,19 +90,17 @@ $(document).on("click", ".btnEditar", function(){
     password = fila.find('td:eq(2)').text();
     email = (fila.find('td:eq(3)').text());
 	phone = parseInt(fila.find('td:eq(4)').text());
-	file = (fila.find('td:eq(5)').text());
-	is_enabled = parseInt(fila.find('td:eq(6)').text());
-	id_institucion = parseInt(fila.find('td:eq(7)').text());
-	id_role = parseInt(fila.find('td:eq(8)').text());
-	id_especialidad = parseInt(fila.find('td:eq(9)').text());
-	last_name_father = (fila.find('td:eq(10)').text());
-	last_name_mother = (fila.find('td:eq(11)').text());
+	is_enabled = parseInt(fila.find('td:eq(5)').text());
+	id_institucion = parseInt(fila.find('td:eq(6)').text());
+	id_role = parseInt(fila.find('td:eq(7)').text());
+	id_especialidad = parseInt(fila.find('td:eq(8)').text());
+	last_name_father = (fila.find('td:eq(9)').text());
+	last_name_mother = (fila.find('td:eq(10)').text());
     $("#DNI").val(DNI);
     $("#username").val(username);
     $("#password").val(password);
     $("#email").val(email);
 	$("#phone").val(phone);
-	$("#file").val(file);
 	$("#is_enabled").val(is_enabled);
 	$("#id_institucion").val(id_institucion);
 	$("#id_role").val(id_role);
@@ -113,7 +109,7 @@ $(document).on("click", ".btnEditar", function(){
 	$("#last_name_mother").val(last_name_mother);
     $(".modal-header").css("background-color", "#007bff");
     $(".modal-header").css("color", "white" );
-    $(".modal-title").text("Editar Instituto");		
+    $(".modal-title").text("Editar Usuario");		
     $('#modalCRUD').modal('show');		   
 });
 

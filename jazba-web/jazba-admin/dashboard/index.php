@@ -38,7 +38,6 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 <th>Password</th>                                
                                 <th>email</th>  
                                 <th>phone</th>
-								<th>file</th>
 								<th>is_enabled</th>
 								<th>id_institucion</th>
 								<th>id_role</th>
@@ -58,7 +57,6 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?php echo $dat['password'] ?></td>
                                 <td><?php echo $dat['email'] ?></td>
 								<td><?php echo $dat['phone'] ?></td>
-								<td><?php echo $dat['file'] ?></td>								
 								<td><?php echo $dat['is_enabled'] ?></td>								
 								<td><?php echo $dat['id_institucion'] ?></td>
 								<td><?php echo $dat['id_role'] ?></td>								
@@ -107,10 +105,6 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                 <div class="form-group">
                 <label for="phone" class="col-form-label">Numero:</label>
                 <input type="text" class="form-control" id="phone">
-                </div>
-                <div class="form-group">
-                <label for="file" class="col-form-label">File:</label>
-                <input type="text" class="form-control" id="file">
                 </div>
                 <div class="form-group">
                 <label for="is_enabled" class="col-form-label">is_enabled:</label>
