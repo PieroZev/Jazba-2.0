@@ -119,7 +119,8 @@ CREATE TABLE `tbl_repoproyectos` (
   `DNI` int(8) NOT NULL,
   `filename` varchar(255) NOT NULL,
   `upload_repo` longblob NOT NULL,
-  `Descripcion` varchar(255) NOT NULL
+  `Descripcion` varchar(255) NOT NULL,
+  `num_likes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
