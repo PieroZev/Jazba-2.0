@@ -33,7 +33,8 @@ $posttitles=[];
 $postdescriptions=[];
 $postowners=[];
 $postIds=[];
-
+$num_likes=[];
+$dni=[];
 if( $usuario != null) {
    // ejecuta la consulta al usuario
 
@@ -57,6 +58,8 @@ if( $usuario != null) {
                 $posttitles[$i] = $row['filename'];
                 $postdescriptions[$i] = $row['Descripcion'];
                 $postimages[$i]= $row['upload_repo'];
+		$num_likes[$i]=$row['num_likes'];
+		$dni[$i]=$row['dni'];
                 $postowners[$i] = $row['username'].' '.$row['last_name_father'].' '.$row['last_name_mother'];
 
                 $i++;
@@ -82,6 +85,24 @@ if( $usuario != null) {
    
    $db -> close();
    
+}
+
+
+
+
+
+
+function update_likes($nro_likes,$dni){
+
+    $sql = "update tbl_repoproyectos set num_likes=($nro_likes+1) where dni=$dni;"	
+	
+      if(isset($dni) && mysqli_query($db,$sql)) {
+
+         header("location: post.php");
+      }else {
+         echo("No se pudo concretar el like ");
+      }
+
 }
 ?>
 
@@ -169,6 +190,7 @@ echo ('
 								<div class="btn-group">
 									<a href="post-detail.php?postId='.$postIds[$i].'" class="btn btn-sm btn-outline-secondary">View</a>
 									<a href="post-detail.php?postId='.$postIds[$i].'" class="btn btn-sm btn-outline-secondary">Edit</a>
+									<a href="update_likes('.$num_likes[$i].','.$dni[$i].')" class="btn btn-sm btn-outline-secondary">Like</a>
 								</div>
 								<small class="text-muted">9 mins</small>
 							</div>
