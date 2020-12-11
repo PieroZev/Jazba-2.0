@@ -92,7 +92,7 @@
         <div  class="form-group" id="password-group">
             <input style="padding-left: 54px;" type="text" placeholder="Repite tu contraseña" class="input camp input-icono" name="passwordconfir" required />
         </div>
-        <input type="submit" value="Cambiar contraseña" class="btn wds-button" name="codigo" />
+        <input type="submit" value="Guardar contraseña" class="btn wds-button" name="codigo" />
         </div>
     </div>
 </div>
