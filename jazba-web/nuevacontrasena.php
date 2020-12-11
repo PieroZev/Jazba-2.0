@@ -21,6 +21,7 @@
     <link rel="shortcut icon" href="img/jazba_02_solo.png" />
 
   <title>Nueva contraseña</title>
+
 </head>
 
 <body style="background: #0780fe;">
@@ -86,7 +87,7 @@
     <form action="" method="post">
         <div class="l-part">
           <div  class="form-group" id="password-group">
-            <input type="text" placeholder="Ingresa tu nueva contraseña" class="input camp input-icono" name="contrasena" required />
+            <input style="padding-left: 54px;" type="text" placeholder="Ingresa tu nueva contraseña" class="input camp input-icono" name="contrasena" required />
         </div>
         <input type="submit" value="Cambiar contraseña" class="btn wds-button" name="codigo" />
         </div>
