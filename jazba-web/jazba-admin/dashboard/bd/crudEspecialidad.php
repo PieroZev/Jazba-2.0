@@ -8,12 +8,10 @@ $conexion = $objeto->Conectar();
 $Descripcion = (isset($_POST['Descripcion'])) ? $_POST['Descripcion'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $id_especialidad = (isset($_POST['id_especialidad'])) ? $_POST['id_especialidad'] : '';
-//$id_admin = (isset($_SESSION['s_username'])) ? $_SESSION['s_username'] : '';
-$id_admin = $_SESSION['s_username'];
 
 switch($opcion){
     case 1: //alta
-        $consulta = "INSERT INTO tbl_especialidad (Descripcion,id_admin) VALUES('$Descripcion','$id_admin') ";			
+        $consulta = "INSERT INTO tbl_especialidad (Descripcion) VALUES('$Descripcion') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
 
