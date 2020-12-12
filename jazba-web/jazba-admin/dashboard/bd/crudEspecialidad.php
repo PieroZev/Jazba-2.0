@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
@@ -35,7 +36,7 @@ switch($opcion){
         $resultado->execute();                           
         break;
 	case 4:
-		$consulta = "SELECT * FROM tbl_especialidad";
+		$consulta = "SELECT id_especialidad, Descripcion FROM tbl_especialidad";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);

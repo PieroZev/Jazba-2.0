@@ -20,7 +20,7 @@
     <link href="css/form-validation.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/jazba_02_solo.png" />
 
-  <title>Nueva contraseña</title>
+  <title>Generar contraseña</title>
 
 </head>
 
@@ -49,17 +49,17 @@
       </nav>
 
   <?php
-  if(isset($_GET['user']) AND isset($_GET['token'])) {
+  if(isset($_GET['user']) AND isset($_GET['code'])) {
 
     require "conexion.php";
 
     $user = $mysqli->real_escape_string($_GET['user']);
-    $token = $mysqli->real_escape_string($_GET['token']);
+    $code = $mysqli->real_escape_string($_GET['code']);
 
-    $sql = $mysqli->query("SELECT token FROM tbl_user WHERE username = '$user'");
+    $sql = $mysqli->query("SELECT code FROM tbl_user WHERE username = '$user'");
     $row = $sql->fetch_array();
 
-    if($row['token'] ==  $token) {
+    if($row['code'] ==  $code) {
   ?>
 
 <div class="container comp-central">  
@@ -70,26 +70,29 @@
 
     $contrasena = $mysqli->real_escape_string($_POST['contrasena']);
 
-    $act = $mysqli->query("UPDATE tbl_user SET password = '$contrasena', token = '' WHERE username = '$user'");
+    $act = $mysqli->query("UPDATE tbl_user SET password = '$contrasena', code = '0', is_enabled = '1', signup_date = now(), confirmed = '1' WHERE username = '$user'");
 
     if($act) {
       echo "Su contraseña se ha cambiado, ya puede ingresar";
-      Header("Refresh: 0; URL=login.php");
+      header("Refresh: 0; URL=login.php");
       }
   }
   ?>
 
 
 <div class="main-content">
-    <h1 class="wds-type--page-title">Es el momento, cambia tu contraseña</h1>
-    <h5>Jazba te da la maxima seguridad permitiendo cambiar tu contraseña, pero que esto no se te haga un hábito. Es el momento
-        de que inicies tu vida laboral por ello, ¡sigue! No despegues de algo tan importante como lo es Jazba.</h5>
+    <h1 class="wds-type--page-title">Es el momento, generar tu contraseña</h1>
+    <h5>Jazba ha validado tu información. Es el momento de que inicies tu vida laboral, sacando el máximo
+    provecho a esta red social laboral, en la que seguramente consigas tu primer trabajo. </h5>
     <form action="" method="post">
         <div class="l-part">
           <div  class="form-group" id="password-group">
             <input style="padding-left: 54px;" type="text" placeholder="Ingresa tu nueva contraseña" class="input camp input-icono" name="contrasena" required />
         </div>
-        <input type="submit" value="Cambiar contraseña" class="btn wds-button" name="codigo" />
+        <div  class="form-group" id="password-group">
+            <input style="padding-left: 54px;" type="text" placeholder="Repite tu contraseña" class="input camp input-icono" name="passwordconfir" required />
+        </div>
+        <input type="submit" value="Guardar contraseña" class="btn wds-button" name="codigo" />
         </div>
     </div>
 </div>

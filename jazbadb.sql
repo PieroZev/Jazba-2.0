@@ -119,7 +119,8 @@ CREATE TABLE `tbl_repoproyectos` (
   `DNI` int(8) NOT NULL,
   `filename` varchar(255) NOT NULL,
   `upload_repo` longblob NOT NULL,
-  `Descripcion` varchar(255) NOT NULL
+  `Descripcion` varchar(255) NOT NULL,
+  `num_likes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -180,6 +181,7 @@ CREATE TABLE `tbl_user` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` int(50) NOT NULL,
+  `file` longblob NOT NULL,
   `photo` longblob NOT NULL,
   `token` varchar(255) DEFAULT NULL,
   `is_enabled` int(11) NOT NULL,
@@ -188,6 +190,9 @@ CREATE TABLE `tbl_user` (
   `id_especialidad` int(11) NOT NULL,
   `last_name_father` varchar(255) NOT NULL,
   `last_name_mother` varchar(255) NOT NULL,
+  `code` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `confirmed` enum('0','1') COLLATE utf8_unicode_ci NOT NULL DEFAULT '0' COMMENT 'Verifico el correo',
+  `signup_date` datetime NOT NULL,
   `dateadd` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_admin` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
