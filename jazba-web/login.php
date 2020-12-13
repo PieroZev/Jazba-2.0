@@ -98,6 +98,12 @@
 
         <body id="degradado">
 
+        <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-2"><a href="index.php" class="btn btn-primary" style="float:right;">Ir al Menu</a></div>
+        <div class="col-md-2"><a href="posts.php" class="btn btn-primary">Ir a Posts</a></div>
+        <div class="col-md-4"></div>
+        </div>
 
         <div class="nuevoestilo">
             <div class="form-signin">
@@ -122,7 +128,7 @@
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">INICIAR SESIÓN</button>
                 <div align="center">
-                    <p>  <a href="https://caniuse.com/#feat=css-placeholder-shown"> ¿Olvidaste la contraseña?</a></p>
+                    <p>  <a href="olvidecontraseña.php"> ¿Olvidaste la contraseña?</a></p>
                     ¿Aún no eres parte de la comunidad JAZBA? <a href="registration.php"> ¡Registrate aquí!</a>
                 </div>
                 </form>

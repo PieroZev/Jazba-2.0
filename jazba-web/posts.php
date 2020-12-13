@@ -15,7 +15,7 @@ function console_log($output, $with_script_tags = true) {
 }
 
 try{
-    if ($_SESSION["login_user"]==null){
+    if (!isset($_SESSION["login_user"])){
         $usuario = "visitante";
     }else{
         $usuario = $_SESSION["login_user"];
@@ -58,8 +58,8 @@ if( $usuario != null) {
                 $posttitles[$i] = $row['filename'];
                 $postdescriptions[$i] = $row['Descripcion'];
                 $postimages[$i]= $row['upload_repo'];
-		$num_likes[$i]=$row['num_likes'];
-		$dni[$i]=$row['dni'];
+				$num_likes[$i]=$row['num_likes'];
+				$dni[$i]=$row['DNI'];
                 $postowners[$i] = $row['username'].' '.$row['last_name_father'].' '.$row['last_name_mother'];
 
                 $i++;
@@ -94,7 +94,7 @@ if( $usuario != null) {
 
 function update_likes($nro_likes,$dni){
 
-    $sql = "update tbl_repoproyectos set num_likes=($nro_likes+1) where dni=$dni;"	
+    $sql = "update tbl_repoproyectos set num_likes=($nro_likes+1) where dni=$dni;";	
 	
       if(isset($dni) && mysqli_query($db,$sql)) {
 
@@ -146,13 +146,13 @@ function update_likes($nro_likes,$dni){
 		<div class="fila">
 		<h1>"JAZBA"</h1>
 		<nav>
-			<ul class="menu">
-				<li><a href="#noticias">Noticias</a></li>
-				<li><a href="#eventos">Eventos</a></li>
-				<li><a href="#empresa">Empresas</a></li>
-			
-			</ul>
-		</nav>		
+					<ul class="menu">
+					<li><a href="index.php">Menu</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="logout-page.php">Logout</a></li>
+                    <li><a href="posts.php">Posts</a></li>
+					</ul>
+            </nav>
 		</div>		
 		</div>
 			

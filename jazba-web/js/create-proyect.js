@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     var fileBlob;
     var blob;
 
@@ -22,16 +21,17 @@ $(document).ready(function(){
       });
 
       $("#newProyect").click(function(){
-
+        debugger;
         var title = $("#post-title").val();
         var description = $("#txt_description").val();
         var dni = parseInt(document.getElementById("mydni").innerHTML.substring(5,14));
         
+        
         //alert(title);
         //alert(description);
 
-        if(title.trim()!=""&&description.trim()!=""&&blob!=undefined&&dni!=""){
-        debugger;
+        if(title.trim()!=""&&description.trim()!=""&&dni!=""){
+        
         $.ajax({
             url:"http://localhost:8081/jazba-web/create-proyect.php",
             method:"POST",

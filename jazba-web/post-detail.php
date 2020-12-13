@@ -127,12 +127,10 @@ if( $usuario != null) {
 		<div class="fila">
 		<h1>"JAZBA"</h1>
 		<nav>
-			<ul class="menu">
-				<li><a href="#noticias">Noticias</a></li>
-				<li><a href="#eventos">Eventos</a></li>
-				<li><a href="#empresa">Empresas</a></li>
-			
-			</ul>
+					<li><a href="index.php">Menu</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="logout-page.php">Logout</a></li>
+                    <li><a href="posts.php">Posts</a></li>
 		</nav>		
 		</div>		
 		</div>
